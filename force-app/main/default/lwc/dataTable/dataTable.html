@@ -1,0 +1,72 @@
+<template>
+    <lightning-card >
+
+        <div slot="title" style="display:inline-flex;">
+            <lightning-icon icon-name={headerIcon} size="small"></lightning-icon>
+            <h2 class="slds-var-m-left_small">{header}</h2>
+            <div class="slds-var-m-left_x-small" if:true={showReloadIcon}>
+                <div class="blob"></div>
+            </div>
+            <slot name="title"></slot>
+        </div>
+
+        <div slot="actions" class="actions" style="min-width:40%;display:inline-flex;">
+            <slot name="actions">
+
+            </slot>
+
+            <lightning-button-icon-stateful icon-name="utility:settings" alternative-text="Setting" 
+                                            onclick={setup} selected={showSetting}></lightning-button-icon-stateful>
+            
+            <lightning-input id="sb" onblur={search} onkeyup={search} type="search"  class="slds-var-m-left_small searchbar" label="Search" 
+                             variant="label-hidden" style="width: 220px;"></lightning-input>
+
+        </div>
+        
+        <slot name="body"></slot>
+
+        <c-drag-sorting if:true={showSetting} 
+                        column-list={columnList} 
+                        onsetupclose={setup} 
+                        user-pref-field-name={userPrefField} 
+                        all-column-list={allColumn}
+                        slot="body" ></c-drag-sorting>
+
+        <div class="slds-var-m-top_small slds-var-m-horizontal_x-small table-div" >
+            <!-- 
+                user-pref-field-name : used to save updated user preference 
+                column-list : list to display columns in drag drop menu
+            -->
+
+            <template if:false={isLoad} >
+                
+                <c-extended-lightning-datatable
+                    key-field="Id"
+                    data={recordList}
+                    columns={columns}
+                    hide-checkbox-column={hideCheckboxColumn}
+                    default-sort-direction="desc"
+                    sorted-by={sortedBy}
+                    sorted-direction={sortedDirection}
+                    onsort={updateColumnSorting}
+                    if:true={recordList}
+                    min-column-width="90px"
+                    onrowaction={handleRowAction}
+                    onrowselection={handleRowselection}
+                    max-row-selection={maxRowSelection}
+                    id="datatable"
+                    
+                >
+                <!-- render-mode="role-based"
+                    render-config={renderConfig} -->
+                </c-extended-lightning-datatable>
+                <template if:true={isEmpty}>
+                    <table class="slds-var-m-around_medium slds-no-row-hover"><thead><tr><th>No records to display.</th></tr></thead></table>
+                </template>
+            </template>
+            <lightning-spinner alternative-text="Loading" if:true={isLoad} variant="brand"></lightning-spinner>
+        </div>
+    </lightning-card>
+
+    <div class="custom-css"></div>
+</template>
