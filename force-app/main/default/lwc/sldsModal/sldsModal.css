@@ -1,0 +1,5 @@
+.slds-modal__content{
+}
+.slds-modal__footer lightning-button, .slds-modal__footer button {
+    --slds-c-button-radius-border:0.25rem 0.25rem 0.25rem 0.25rem ;
+}

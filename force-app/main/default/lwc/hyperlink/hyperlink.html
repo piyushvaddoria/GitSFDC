@@ -1,0 +1,14 @@
+<template>
+    <a  href={url} 
+        target={target}
+        onclick={redirect}
+        class={styleClass} 
+        title={title}
+        if:false={showAsText}
+    >
+        {label}
+        <slot name="label"></slot>
+    </a>
+
+    <span if:true={showAsText}>{label}</span>
+</template>

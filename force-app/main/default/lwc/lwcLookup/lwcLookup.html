@@ -1,0 +1,18 @@
+<template>
+    <lightning-record-edit-form object-api-name={childObjectApiName}>
+        <div class={inputDivClass}>
+            
+            <label if:false={hideLabel} class="slds-form-element__label slds-no-flex" for="fieldid">
+                <abbr if:true={required} title="required" class="slds-required">*</abbr>{fieldLabel}
+            </label>
+            <lightning-input-field  id="fieldid" required={required} 
+                                    variant={variantfld} 
+                                    field-name={targetFieldApiName}
+                                    value={value} onchange={handleChange} 
+                                    disabled={disabled}
+                                    onkeypress={handleSubmit}
+                                    >
+            </lightning-input-field>
+        </div>
+    </lightning-record-edit-form>
+</template>

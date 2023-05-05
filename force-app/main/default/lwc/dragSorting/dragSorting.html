@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-is-open" aria-hidden="false">
+
+        <div class="slds-panel__header">
+            <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Filter">Settings</h2>
+            <lightning-button-icon icon-name="utility:close" onclick={close} variant="bare" title="Close Settings"></lightning-button-icon>
+        </div>
+
+        <div class="container items slds-var-p-around_small">
+            <template for:each={columnsPref} for:item="col">
+                <lightning-button-stateful label-when-off={col.label} label-when-on={col.label}
+                    label-when-hover={col.label} icon-name-when-off="utility:add" icon-name-when-on="utility:check"
+                    icon-name-when-hover="utility:close" key={col.label} selected={col.isSelected} variant={col.variant}
+                    class="slds-var-m-vertical_x-small" onclick={handleSelection} name={col.label} >
+                </lightning-button-stateful>
+            </template>
+        </div>
+
+        <div class="slds-var-m-vertical_small slds-var-m-right_medium slds-size_1-of-1 button-footer">
+            <lightning-button label="Reset" onclick={resetDefault}></lightning-button>&nbsp;&nbsp;
+            <lightning-button variant="brand" label="Save" onclick={done}></lightning-button>
+        </div>
+
+    </div>
+    <div class="custom-css"></div>
+
+</template>

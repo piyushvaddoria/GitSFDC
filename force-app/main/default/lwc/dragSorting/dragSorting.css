@@ -1,0 +1,30 @@
+.container {
+	max-height: 270px;
+	overflow-y: scroll;
+}
+
+button.drag-sort-active {
+	background: transparent;
+	color: transparent;
+	background: #146dcc;
+	cursor: grabbing !important;
+	color: #fff;
+}
+
+div.drag-sort-active {
+	background: transparent;
+	color: transparent;
+}
+
+.items {
+	display: grid;
+	justify-items: center;
+}
+.slds-panel {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: max-content;
+	z-index: 97;
+}
+.button-footer {
+	text-align: center;
+}

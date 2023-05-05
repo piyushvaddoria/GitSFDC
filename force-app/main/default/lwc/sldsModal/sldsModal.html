@@ -1,0 +1,54 @@
+<template >
+    <span class="main-span" id={cmpId}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container main">
+            <!-- modal header start -->
+
+                <header class="slds-modal__header" if:true={showLongHeading}>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal} if:false={hideCancelButton}>
+                        <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <p style="font-size:14px;">
+                        {heading}
+                    </p>
+                </header>
+
+                <header class="slds-modal__header" if:true={showShortHeading}>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal} if:false={hideCancelButton}>
+                        <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{heading}</h2>
+                </header>
+
+                <slot name="title">
+
+                </slot>
+            
+                <!-- modal body start -->
+                <div class={classes} id="modal-content-id-1">
+                    <slot name="body"></slot>
+                </div>
+                <!-- modal footer start-->
+
+                <footer class="slds-modal__footer" if:false={hideFooter}>
+                    <slot name="footer-left"></slot>
+                    <lightning-button onclick={closeModal} variant="neutral" label={closeButtonLabel} class="slds-var-m-right_small" if:false={hideCancelButton}></lightning-button>
+                    <slot name="footer"></slot>                    
+                </footer>
+        </div>
+        <lightning-spinner  alternative-text="Loading" if:true={showSpinner} variant="brand"></lightning-spinner>
+        </section>
+        
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </span>
+    
+    
+</template>
